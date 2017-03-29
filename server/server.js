@@ -8,9 +8,15 @@ const ReactDOMServer = require('react-dom/server');
 
 
 app.use(express.static(path.join(__dirname, "./../public")))
+app.use(bodyParser.json())
 
-console.log(path.join(__dirname, "./../dist"))
+console.log(__dirname)
 
+//post should be able to put entry into DB
+app.post('/entries',(request, response) => {
+    console.log(request.body) //THIS IS THE STUFF WE WANT!!!!
+    response.send("POST successful???")
+})
 
 app.listen(3000, function () {
   console.log('listening on port 3000!')
