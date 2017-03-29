@@ -8,6 +8,7 @@ class Page extends Component {
   render() {
     //console.log(this.props.entry) // logs the current state and the text entry
     //console.log(this.props.updateEntry) //logs the function itself
+
     return (
       <div className="Page">
         <div className="Welcome">

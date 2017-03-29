@@ -46,12 +46,20 @@ logTime () {
    })
  }
 
+//get entries from DB
+componentDidMount(){
+   axios.get('http://localhost:3000/entries').then((response) => {
+     console.log(response)
+   })
+}
+
   render() {
 
-    console.log(this.state.title)
+    //console.log(this.state.title)
     return (
       <div className="App">
-        <Book entry = {this.state.entry} user={this.state.user} title={this.updateTitle} logTime={this.logTime()} updateEntry={this.updateEntry} postToDB={this.postToDB}/>
+        <Book entry = {this.state.entry} user={this.state.user} title={this.updateTitle} logTime={this.logTime()} 
+        updateEntry={this.updateEntry} postToDB={this.postToDB} />
       </div>
     );
   }

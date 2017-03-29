@@ -23,17 +23,22 @@ app.post('/entries',(request, response) => {
 
         stmt.finalize()
 
-        db.each('SELECT user, title, entry, logTime FROM entries', function (err, row) {
-            //if (err) console.log(err)
-            response.json(row);
-            //console.log(row.user + "/" + row.title + "/" + row.entry + "/" + row.logTime)
-        })
+        // db.each('SELECT user, title, entry, logTime FROM entries', function (err, row) {
+        //     //if (err) console.log(err)
+        //     //console.log(row)
+        //     //response.json(row);
+        //     //console.log(row.user + "/" + row.title + "/" + row.entry + "/" + row.logTime)
+        // })
     })
 
+    response.json(request.body)
     db.close()
 })
 
 //should make a get request to get the entry based on the title
+app.get('/entries', (request, response) => {
+    response.send()
+})
 
 app.listen(3000, function () {
   console.log('listening on port 3000!')

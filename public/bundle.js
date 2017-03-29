@@ -10211,15 +10211,26 @@ var App = function (_Component) {
         logTime: this.logTime()
       }).then(function (response) {});
     }
+
+    //get entries from DB
+
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      _axios2.default.get('http://localhost:3000/entries').then(function (response) {
+        console.log(response);
+      });
+    }
   }, {
     key: 'render',
     value: function render() {
 
-      console.log(this.state.title);
+      //console.log(this.state.title)
       return _react2.default.createElement(
         'div',
         { className: 'App' },
-        _react2.default.createElement(_book2.default, { entry: this.state.entry, user: this.state.user, title: this.updateTitle, logTime: this.logTime(), updateEntry: this.updateEntry, postToDB: this.postToDB })
+        _react2.default.createElement(_book2.default, { entry: this.state.entry, user: this.state.user, title: this.updateTitle, logTime: this.logTime(),
+          updateEntry: this.updateEntry, postToDB: this.postToDB })
       );
     }
   }]);
@@ -11123,12 +11134,14 @@ var Book = function (_Component) {
     //   super(props);
     // }
 
+
     value: function render() {
       // should be able to access a particular entry with a get request.
       return _react2.default.createElement(
         'div',
         { className: 'Book' },
-        _react2.default.createElement(_page2.default, { user: this.props.user, title: this.props.title, entry: this.props.entry, logTime: this.props.logTime, updateEntry: this.props.updateEntry, postToDB: this.props.postToDB })
+        _react2.default.createElement(_page2.default, { user: this.props.user, title: this.props.title, entry: this.props.entry, logTime: this.props.logTime,
+          updateEntry: this.props.updateEntry, postToDB: this.props.postToDB })
       );
     }
   }]);
@@ -11205,6 +11218,7 @@ var Page = function (_Component) {
     value: function render() {
       //console.log(this.props.entry) // logs the current state and the text entry
       //console.log(this.props.updateEntry) //logs the function itself
+
       return _react2.default.createElement(
         "div",
         { className: "Page" },
