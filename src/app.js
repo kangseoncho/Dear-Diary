@@ -43,7 +43,6 @@ logTime () {
      entry: this.state.entry,
      logTime: this.logTime()
    }).then((response) => {
-     console.log(response)
    })
  }
 

@@ -25,13 +25,15 @@ app.post('/entries',(request, response) => {
 
         db.each('SELECT user, title, entry, logTime FROM entries', function (err, row) {
             //if (err) console.log(err)
-            console.log(row.user + "/" + row.title + "/" + row.entry + "/" + row.logTime)
+            response.json(row);
+            //console.log(row.user + "/" + row.title + "/" + row.entry + "/" + row.logTime)
         })
     })
 
     db.close()
-    response.send("POST successful???")
 })
+
+//should make a get request to get the entry based on the title
 
 app.listen(3000, function () {
   console.log('listening on port 3000!')
