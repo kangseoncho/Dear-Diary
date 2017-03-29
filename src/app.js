@@ -14,6 +14,7 @@ class App extends Component {
     this.updateEntry = this.updateEntry.bind(this);
     this.postToDB = this.postToDB.bind(this);
     this.logTime = this.logTime.bind(this);
+    this.getFromDB = this.getFromDB.bind(this);
   }
 
 //will get the time and date of the diary entry
@@ -34,32 +35,39 @@ logTime () {
    this.setState({title: event.target.value})
  }
 
-//function that will 1. grab current state, 2. put stuff into SQlite
+//function that will grab current state and make post request
  postToDB () {
-   // do a ajax request
    axios.post('http://localhost:3000/entries', {
      user: this.state.user,
      title: this.state.title,
      entry: this.state.entry,
      logTime: this.logTime()
    }).then((response) => {
+     console.log("I am from Axios post request: ", response)
    })
  }
 
 //get entries from DB
-componentDidMount(){
-   axios.get('http://localhost:3000/entries').then((response) => {
-     console.log(response)
-   })
+getFromDB() {
+   axios.get('http://localhost:3000/findEntries')
+   .then((response) => {
+     console.log("I am from axios get request: ", response);
+     //populate fields with past information
+     this.setState({
+        user: response.data[0].user,
+        title: response.data[0].title,
+        entry: response.data[0].entry,
+        logTime: response.data[0].logTime
+     })
+    })
+  .catch((err) => console.log(err))
 }
 
   render() {
-
-    //console.log(this.state.title)
     return (
       <div className="App">
         <Book entry = {this.state.entry} user={this.state.user} title={this.updateTitle} logTime={this.logTime()} 
-        updateEntry={this.updateEntry} postToDB={this.postToDB} />
+        updateEntry={this.updateEntry} postToDB={this.postToDB} getFromDB={this.getFromDB}/>
       </div>
     );
   }

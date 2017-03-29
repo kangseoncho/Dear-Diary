@@ -13,7 +13,7 @@ class Book extends Component {
     return (
       <div className="Book">
         <Page user={this.props.user} title={this.props.title} entry = {this.props.entry} logTime={this.props.logTime} 
-        updateEntry={this.props.updateEntry} postToDB={this.props.postToDB} />
+        updateEntry={this.props.updateEntry} postToDB={this.props.postToDB} getFromDB={this.props.getFromDB}/>
       </div>
     );
   }

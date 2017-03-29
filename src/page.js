@@ -14,12 +14,17 @@ class Page extends Component {
         <div className="Welcome">
           <h2>Welcome to Dear Diary, {this.props.user}</h2>
           <h4>Entry for the Date: {this.props.logTime}</h4>
-          <h4>Title: </h4> <input type="text" onChange={this.props.title} />
+          <h4>Title:   <input type="text" className="titleSearch" value={this.props.title} onChange={this.props.title} />  </h4> 
+            
             <div>
-            <textarea className="Entry" placeholder="Start Writing..." cols="90" wrap="soft" rows="80" 
-                onChange={this.props.updateEntry}>
+            <textarea className="Entry" placeholder="Start Writing..." cols="90" wrap="soft" rows="50" 
+                onChange={this.props.updateEntry} value={this.props.entry}>
             </textarea>
-            <input type="submit" value="Log" onClick={this.props.postToDB}/>
+            </div>
+
+            <div>
+              <input type="submit" className="button" value="Log" onClick={this.props.postToDB}/>
+              <input type="submit" className="button" value="Get Past Entries" onClick={this.props.getFromDB}/>
             </div>
         </div>
       </div>

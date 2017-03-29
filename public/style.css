@@ -3,20 +3,36 @@ body {
     margin: 0;
 }
 
-
 .Welcome {
-    border: 1px black solid;
+    /*border: 1px black solid;*/
     text-align: center;
     margin-left: 10%;
     margin-right: 10%;
     height: auto;
+    background-image: url('lajolla.jpg');
+    color: black;
 }
+
+.titleSearch {
+    width: 20%;
+}
+
 
 .Entry {
     padding: 20px;
-    border: 1px grey solid;
+    border: 1px black solid;
+    border-radius: 5px;
     text-align: center;
     font-size: 16px;
     width: 70%;
     position: relative;
+    background-color: transparent;
+}
+
+.button {
+   position: relative;
+   padding: 10px; 
+   margin-right: 10%;
+   margin-left: 10%;
+   width: 20%;
 }

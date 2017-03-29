@@ -10169,6 +10169,7 @@ var App = function (_Component) {
     _this.updateEntry = _this.updateEntry.bind(_this);
     _this.postToDB = _this.postToDB.bind(_this);
     _this.logTime = _this.logTime.bind(_this);
+    _this.getFromDB = _this.getFromDB.bind(_this);
     return _this;
   }
 
@@ -10198,39 +10199,49 @@ var App = function (_Component) {
       this.setState({ title: event.target.value });
     }
 
-    //function that will 1. grab current state, 2. put stuff into SQlite
+    //function that will grab current state and make post request
 
   }, {
     key: 'postToDB',
     value: function postToDB() {
-      // do a ajax request
       _axios2.default.post('http://localhost:3000/entries', {
         user: this.state.user,
         title: this.state.title,
         entry: this.state.entry,
         logTime: this.logTime()
-      }).then(function (response) {});
+      }).then(function (response) {
+        console.log("I am from Axios post request: ", response);
+      });
     }
 
     //get entries from DB
 
   }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      _axios2.default.get('http://localhost:3000/entries').then(function (response) {
-        console.log(response);
+    key: 'getFromDB',
+    value: function getFromDB() {
+      var _this2 = this;
+
+      _axios2.default.get('http://localhost:3000/findEntries').then(function (response) {
+        console.log("I am from axios get request: ", response);
+        //populate fields with past information
+        _this2.setState({
+          user: response.data[0].user,
+          title: response.data[0].title,
+          entry: response.data[0].entry,
+          logTime: response.data[0].logTime
+        });
+      }).catch(function (err) {
+        return console.log(err);
       });
     }
   }, {
     key: 'render',
     value: function render() {
-
-      //console.log(this.state.title)
       return _react2.default.createElement(
         'div',
         { className: 'App' },
         _react2.default.createElement(_book2.default, { entry: this.state.entry, user: this.state.user, title: this.updateTitle, logTime: this.logTime(),
-          updateEntry: this.updateEntry, postToDB: this.postToDB })
+          updateEntry: this.updateEntry, postToDB: this.postToDB, getFromDB: this.getFromDB })
       );
     }
   }]);
@@ -11141,7 +11152,7 @@ var Book = function (_Component) {
         'div',
         { className: 'Book' },
         _react2.default.createElement(_page2.default, { user: this.props.user, title: this.props.title, entry: this.props.entry, logTime: this.props.logTime,
-          updateEntry: this.props.updateEntry, postToDB: this.props.postToDB })
+          updateEntry: this.props.updateEntry, postToDB: this.props.postToDB, getFromDB: this.props.getFromDB })
       );
     }
   }]);
@@ -11240,16 +11251,21 @@ var Page = function (_Component) {
           _react2.default.createElement(
             "h4",
             null,
-            "Title: "
+            "Title:   ",
+            _react2.default.createElement("input", { type: "text", className: "titleSearch", value: this.props.title, onChange: this.props.title }),
+            "  "
           ),
-          " ",
-          _react2.default.createElement("input", { type: "text", onChange: this.props.title }),
           _react2.default.createElement(
             "div",
             null,
-            _react2.default.createElement("textarea", { className: "Entry", placeholder: "Start Writing...", cols: "90", wrap: "soft", rows: "80",
-              onChange: this.props.updateEntry }),
-            _react2.default.createElement("input", { type: "submit", value: "Log", onClick: this.props.postToDB })
+            _react2.default.createElement("textarea", { className: "Entry", placeholder: "Start Writing...", cols: "90", wrap: "soft", rows: "50",
+              onChange: this.props.updateEntry, value: this.props.entry })
+          ),
+          _react2.default.createElement(
+            "div",
+            null,
+            _react2.default.createElement("input", { type: "submit", className: "button", value: "Log", onClick: this.props.postToDB }),
+            _react2.default.createElement("input", { type: "submit", className: "button", value: "Get Past Entries", onClick: this.props.getFromDB })
           )
         )
       );
