@@ -10224,17 +10224,21 @@ var App = function (_Component) {
       var _this2 = this;
 
       _axios2.default.get('http://localhost:3000/findEntries').then(function (response) {
-        console.log("I am from axios get request: ", response);
+        //console.log("I am from axios get request: ", response);
+
+        //will fild the object with the title in the seachbox
+        var searchItem = document.getElementById('seachField').value;
+        var result = response.data.filter(function (element, index) {
+          return searchItem === element.title;
+        });
+
         //populate fields with past information
         _this2.setState({
-          user: response.data[1].user,
-          title: response.data[1].title,
-          entry: response.data[1].entry
+          user: result[0].user,
+          title: result[0].title,
+          entry: result[0].entry
         });
-        console.log("from app: ", _this2.state.logTime);
-      })
-      //  console.log(this.state.title)
-      .catch(function (err) {
+      }).catch(function (err) {
         return console.log(err);
       });
     }
@@ -11259,6 +11263,7 @@ var Page = function (_Component) {
             "div",
             null,
             _react2.default.createElement("input", { type: "submit", className: "button", value: "Log", onClick: this.props.postToDB }),
+            _react2.default.createElement("input", { type: "text", id: "seachField" }),
             _react2.default.createElement("input", { type: "submit", className: "button", value: "Get Past Entries", onClick: this.props.getFromDB })
           )
         )

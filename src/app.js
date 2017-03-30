@@ -53,16 +53,21 @@ logTime () {
 getFromDB() {
    axios.get('http://localhost:3000/findEntries')
    .then((response) => {
-     console.log("I am from axios get request: ", response);
+     //console.log("I am from axios get request: ", response);
+
+     //will fild the object with the title in the seachbox
+       let searchItem = document.getElementById('seachField').value;
+       let result = response.data.filter((element, index) => {
+         return searchItem === element.title
+       })
+
         //populate fields with past information
         this.setState({
-            user: response.data[1].user,
-            title: response.data[1].title,
-            entry: response.data[1].entry
+            user: result[0].user,
+            title: result[0].title,
+            entry: result[0].entry
         })
-    console.log("from app: ", this.state.logTime)
      })
-    //  console.log(this.state.title)
   .catch((err) => console.log(err))
 }
 
