@@ -9,12 +9,12 @@ class Page extends Component {
     return (
       <div className="Page">
         <div className="Welcome">
-          <h2>Welcome to Dear Diary, {this.props.user}</h2>
+          <h1>Welcome to Dear Diary, {this.props.user}</h1>
           <h4>Entry for the Date: {this.props.logTime}</h4>
-          <h4>Title:   <input type="text" className="titleSearch" value={this.props.title} onChange={this.props.updateTitle} />  </h4> 
+          <h4>Title:   <input type="text" className="currTitle" value={this.props.title} onChange={this.props.updateTitle} />  </h4> 
             
             <div>
-            <textarea className="Entry" placeholder="Start Writing..." cols="90" wrap="soft" rows="40" 
+            <textarea className="Entry" placeholder="Start Writing..." cols="70" wrap="soft" rows="40" 
                 onChange={this.props.updateEntry} value={this.props.entry}>
             </textarea>
             </div>

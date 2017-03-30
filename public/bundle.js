@@ -10184,6 +10184,7 @@ var App = function (_Component) {
       var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
       var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
       var dateTime = date + ' ' + time;
+
       return dateTime;
     }
 
@@ -11235,7 +11236,7 @@ var Page = function (_Component) {
           "div",
           { className: "Welcome" },
           _react2.default.createElement(
-            "h2",
+            "h1",
             null,
             "Welcome to Dear Diary, ",
             this.props.user
@@ -11250,13 +11251,13 @@ var Page = function (_Component) {
             "h4",
             null,
             "Title:   ",
-            _react2.default.createElement("input", { type: "text", className: "titleSearch", value: this.props.title, onChange: this.props.updateTitle }),
+            _react2.default.createElement("input", { type: "text", className: "currTitle", value: this.props.title, onChange: this.props.updateTitle }),
             "  "
           ),
           _react2.default.createElement(
             "div",
             null,
-            _react2.default.createElement("textarea", { className: "Entry", placeholder: "Start Writing...", cols: "90", wrap: "soft", rows: "40",
+            _react2.default.createElement("textarea", { className: "Entry", placeholder: "Start Writing...", cols: "70", wrap: "soft", rows: "40",
               onChange: this.props.updateEntry, value: this.props.entry })
           ),
           _react2.default.createElement(
