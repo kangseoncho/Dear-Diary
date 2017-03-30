@@ -56,7 +56,7 @@ getFromDB() {
      //console.log("I am from axios get request: ", response);
 
      //will fild the object with the title in the seachbox
-       let searchItem = document.getElementById('seachField').value;
+       let searchItem = document.getElementById('searchField').value;
        let result = response.data.filter((element, index) => {
          return searchItem === element.title
        })

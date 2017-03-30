@@ -10227,7 +10227,7 @@ var App = function (_Component) {
         //console.log("I am from axios get request: ", response);
 
         //will fild the object with the title in the seachbox
-        var searchItem = document.getElementById('seachField').value;
+        var searchItem = document.getElementById('searchField').value;
         var result = response.data.filter(function (element, index) {
           return searchItem === element.title;
         });
@@ -11262,8 +11262,13 @@ var Page = function (_Component) {
           _react2.default.createElement(
             "div",
             null,
-            _react2.default.createElement("input", { type: "submit", className: "button", value: "Log", onClick: this.props.postToDB }),
-            _react2.default.createElement("input", { type: "text", id: "seachField" }),
+            _react2.default.createElement(
+              "div",
+              null,
+              _react2.default.createElement("input", { type: "submit", className: "button", value: "Log", onClick: this.props.postToDB }),
+              " "
+            ),
+            _react2.default.createElement("input", { type: "text", id: "searchField" }),
             _react2.default.createElement("input", { type: "submit", className: "button", value: "Get Past Entries", onClick: this.props.getFromDB })
           )
         )

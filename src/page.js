@@ -20,9 +20,9 @@ class Page extends Component {
             </div>
 
             <div>
-              <input type="submit" className="button" value="Log" onClick={this.props.postToDB}/>
+              <div><input type="submit" className="button" value="Log" onClick={this.props.postToDB}/> </div>
               
-              <input type="text" id="seachField" />
+              <input type="text" id="searchField" />
               <input type="submit" className="button" value="Get Past Entries" onClick={this.props.getFromDB}/>
             </div>
         </div>
