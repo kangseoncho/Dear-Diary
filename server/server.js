@@ -35,7 +35,7 @@ app.post('/entries',(request, response) => {
 app.get('/findEntries', (request, response) => {
    db.all("SELECT * FROM entries", (err, rows) => {
        if(err) console.log(err)
-       else console.log(rows)
+       else console.log("rows, rows: ", rows)
        response.send(rows)
    })
 })

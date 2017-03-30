@@ -10163,7 +10163,8 @@ var App = function (_Component) {
     _this.state = {
       title: "",
       user: "LittleToy",
-      entry: ""
+      entry: "",
+      date: ""
     };
     _this.updateTitle = _this.updateTitle.bind(_this);
     _this.updateEntry = _this.updateEntry.bind(_this);
@@ -10197,6 +10198,7 @@ var App = function (_Component) {
     key: 'updateTitle',
     value: function updateTitle(event) {
       this.setState({ title: event.target.value });
+      console.log(this.state.title);
     }
 
     //function that will grab current state and make post request
@@ -10225,12 +10227,14 @@ var App = function (_Component) {
         console.log("I am from axios get request: ", response);
         //populate fields with past information
         _this2.setState({
-          user: response.data[0].user,
-          title: response.data[0].title,
-          entry: response.data[0].entry,
-          logTime: response.data[0].logTime
+          user: response.data[1].user,
+          title: response.data[1].title,
+          entry: response.data[1].entry
         });
-      }).catch(function (err) {
+        console.log("from app: ", _this2.state.logTime);
+      })
+      //  console.log(this.state.title)
+      .catch(function (err) {
         return console.log(err);
       });
     }
@@ -10240,7 +10244,7 @@ var App = function (_Component) {
       return _react2.default.createElement(
         'div',
         { className: 'App' },
-        _react2.default.createElement(_book2.default, { entry: this.state.entry, user: this.state.user, title: this.updateTitle, logTime: this.logTime(),
+        _react2.default.createElement(_book2.default, { entry: this.state.entry, user: this.state.user, title: this.state.title, updateTitle: this.updateTitle, logTime: this.logTime(),
           updateEntry: this.updateEntry, postToDB: this.postToDB, getFromDB: this.getFromDB })
       );
     }
@@ -11140,19 +11144,13 @@ var Book = function (_Component) {
 
   _createClass(Book, [{
     key: 'render',
-
-    //   constructor(props) {
-    //   super(props);
-    // }
-
-
     value: function render() {
       // should be able to access a particular entry with a get request.
       return _react2.default.createElement(
         'div',
         { className: 'Book' },
-        _react2.default.createElement(_page2.default, { user: this.props.user, title: this.props.title, entry: this.props.entry, logTime: this.props.logTime,
-          updateEntry: this.props.updateEntry, postToDB: this.props.postToDB, getFromDB: this.props.getFromDB })
+        _react2.default.createElement(_page2.default, { user: this.props.user, updateTitle: this.props.updateTitle, entry: this.props.entry, title: this.props.title,
+          logTime: this.props.logTime, updateEntry: this.props.updateEntry, postToDB: this.props.postToDB, getFromDB: this.props.getFromDB })
       );
     }
   }]);
@@ -11221,14 +11219,10 @@ var Page = function (_Component) {
 
   _createClass(Page, [{
     key: "render",
-
-    //   constructor(props) {
-    //   super(props);
-    // }
-
     value: function render() {
       //console.log(this.props.entry) // logs the current state and the text entry
       //console.log(this.props.updateEntry) //logs the function itself
+      console.log("from pages: ", this.props.logTime);
 
       return _react2.default.createElement(
         "div",
@@ -11252,13 +11246,13 @@ var Page = function (_Component) {
             "h4",
             null,
             "Title:   ",
-            _react2.default.createElement("input", { type: "text", className: "titleSearch", value: this.props.title, onChange: this.props.title }),
+            _react2.default.createElement("input", { type: "text", className: "titleSearch", value: this.props.title, onChange: this.props.updateTitle }),
             "  "
           ),
           _react2.default.createElement(
             "div",
             null,
-            _react2.default.createElement("textarea", { className: "Entry", placeholder: "Start Writing...", cols: "90", wrap: "soft", rows: "50",
+            _react2.default.createElement("textarea", { className: "Entry", placeholder: "Start Writing...", cols: "90", wrap: "soft", rows: "40",
               onChange: this.props.updateEntry, value: this.props.entry })
           ),
           _react2.default.createElement(

@@ -8,7 +8,8 @@ class App extends Component {
     this.state = {
       title: "",
       user: "LittleToy",
-      entry: ""
+      entry: "",
+      date: ""
     };
     this.updateTitle = this.updateTitle.bind(this);
     this.updateEntry = this.updateEntry.bind(this);
@@ -33,6 +34,7 @@ logTime () {
 
  updateTitle(event) {
    this.setState({title: event.target.value})
+   console.log(this.state.title)
  }
 
 //function that will grab current state and make post request
@@ -52,22 +54,23 @@ getFromDB() {
    axios.get('http://localhost:3000/findEntries')
    .then((response) => {
      console.log("I am from axios get request: ", response);
-     //populate fields with past information
-     this.setState({
-        user: response.data[0].user,
-        title: response.data[0].title,
-        entry: response.data[0].entry,
-        logTime: response.data[0].logTime
+        //populate fields with past information
+        this.setState({
+            user: response.data[1].user,
+            title: response.data[1].title,
+            entry: response.data[1].entry
+        })
+    console.log("from app: ", this.state.logTime)
      })
-    })
+    //  console.log(this.state.title)
   .catch((err) => console.log(err))
 }
 
   render() {
     return (
       <div className="App">
-        <Book entry = {this.state.entry} user={this.state.user} title={this.updateTitle} logTime={this.logTime()} 
-        updateEntry={this.updateEntry} postToDB={this.postToDB} getFromDB={this.getFromDB}/>
+        <Book entry = {this.state.entry} user={this.state.user} title={this.state.title} updateTitle={this.updateTitle} logTime={this.logTime()} 
+        updateEntry={this.updateEntry} postToDB={this.postToDB} getFromDB={this.getFromDB} />
       </div>
     );
   }
