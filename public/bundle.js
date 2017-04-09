@@ -10199,7 +10199,6 @@ var App = function (_Component) {
     key: 'updateTitle',
     value: function updateTitle(event) {
       this.setState({ title: event.target.value });
-      console.log(this.state.title);
     }
 
     //function that will grab current state and make post request

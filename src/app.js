@@ -35,7 +35,6 @@ logTime () {
 
  updateTitle(event) {
    this.setState({title: event.target.value})
-   console.log(this.state.title)
  }
 
 //function that will grab current state and make post request
@@ -58,9 +57,7 @@ getFromDB() {
 
      //will fild the object with the title in the seachbox
        let searchItem = document.getElementById('searchField').value;
-       let result = response.data.filter((element, index) => {
-         return searchItem === element.title
-       })
+       let result = response.data.filter((element, index) => searchItem === element.title)
 
         //populate fields with past information
         this.setState({
