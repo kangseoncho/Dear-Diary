@@ -6,8 +6,8 @@ body {
 .Welcome {
     /*border: 1px black solid;*/
     text-align: center;
-    /*margin-left: 10%;
-    margin-right: 10%;*/
+    /*margin-left: 10%;*/
+    margin-top: -2%;
     height: auto;
     background-image: url('http://wallzoa.com/wp-content/uploads/2013/06/twilight-backgrounds-woods.jpeg');
     color: white;
@@ -15,6 +15,10 @@ body {
 
 .currTitle {
     width: 20%;
+    background-color: transparent;
+    height: 30px;
+    color: white;
+    font-size: 25px;
 }
 
 
@@ -31,13 +35,26 @@ body {
     font-size: 20px;
 }
 
+.log {
+    padding: 10px;
+}
+
 .button {
    position: relative;
    padding: 10px; 
    margin-left: 2%;
    width: 20%;
+   height: 10%;
+   -moz-appearance: none;
+   -webkit-appearance: none;
+   appearance: none;
 }
 
 #searchField {
+   font-size: 20px;
    width: 30%;
+   height: 30px;
+   position: relative;
+   background-color: transparent;
+   color: white;
 }

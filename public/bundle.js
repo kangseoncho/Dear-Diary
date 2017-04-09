@@ -11234,6 +11234,7 @@ var Page = function (_Component) {
         _react2.default.createElement(
           "div",
           { className: "Welcome" },
+          _react2.default.createElement("br", null),
           _react2.default.createElement(
             "h1",
             null,
@@ -11247,7 +11248,7 @@ var Page = function (_Component) {
             this.props.logTime
           ),
           _react2.default.createElement(
-            "h4",
+            "h3",
             null,
             "Title:   ",
             _react2.default.createElement("input", { type: "text", className: "currTitle", value: this.props.title, onChange: this.props.updateTitle }),
@@ -11256,18 +11257,22 @@ var Page = function (_Component) {
           _react2.default.createElement(
             "div",
             null,
-            _react2.default.createElement("textarea", { className: "Entry", placeholder: "Start Writing...", cols: "70", wrap: "soft", rows: "40",
+            _react2.default.createElement("textarea", { className: "Entry", placeholder: "Start Writing...", cols: "70", wrap: "soft", rows: "30",
               onChange: this.props.updateEntry, value: this.props.entry })
           ),
           _react2.default.createElement(
             "div",
-            null,
+            { className: "log" },
             _react2.default.createElement(
               "div",
               null,
               _react2.default.createElement("input", { type: "submit", className: "button", value: "Log", onClick: this.props.postToDB }),
               " "
-            ),
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "log" },
             _react2.default.createElement("input", { type: "text", id: "searchField" }),
             _react2.default.createElement("input", { type: "submit", className: "button", value: "Get Past Entries", onClick: this.props.getFromDB })
           )
