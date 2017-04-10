@@ -46,8 +46,9 @@ body {
    width: 20%;
    height: 10%;
    -moz-appearance: none;
+   border-radius: 5px; 
    -webkit-appearance: none;
-   appearance: none;
+   background-color: white;
 }
 
 #searchField {
