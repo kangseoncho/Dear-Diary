@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="intro">Welcome to Dear Diary</div>
+    <br>
+    <div class="intro">Please log-in</div>
+
+        Username: <input type="text" id="existingUser"> <br>
+        Password: <input type="password" id="existingPassword"> <br>
+        <input type="submit" value="log-In" onclick="verify()">
+        <br><br><br>
+        New User? Sign Up!
+        <br>
+        Username: <input type="text" id="newUsername"> <br>
+        Password: <input type="password" id="newPassword"> <br>
+        <input type="submit" value="Sign-Up" onclick="signup()">
+
+  </body>
+    <script src="main.js"></script>
+</html>

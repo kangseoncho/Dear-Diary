@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Book from './book.js';
 import axios from 'axios';
+import moment from 'moment';
 
 class App extends Component {
   constructor() {
@@ -20,12 +21,7 @@ class App extends Component {
 
 //will get the time and date of the diary entry
 logTime () {
-  let today = new Date();
-  let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-  let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  let dateTime = date+' '+time;
-  
-  return dateTime
+  return moment().format('MMMM Do YYYY'); //is a string
 }
 
  //custom function to update state based on entry entries
@@ -53,8 +49,6 @@ logTime () {
 getFromDB() {
    axios.get('http://localhost:3000/findEntries')
    .then((response) => {
-     //console.log("I am from axios get request: ", response);
-
      //will fild the object with the title in the seachbox
        let searchItem = document.getElementById('searchField').value;
        let result = response.data.filter((element, index) => searchItem === element.title)

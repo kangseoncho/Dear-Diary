@@ -1,0 +1,33 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-image: url('http://wallzoa.com/wp-content/uploads/2013/06/twilight-backgrounds-woods.jpeg');
+    color: white;
+}
+
+.intro {
+    text-align: center;
+    vertical-align: middle;
+}
+
+input {
+    vertical-align: middle; 
+    border: 1px white solid;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+    background-color: transparent;
+    color: white;
+}
+
+.button {
+   position: relative;
+   padding: 10px; 
+   margin-left: 2%;
+   width: 20%;
+   height: 10%;
+   -moz-appearance: none;
+   border-radius: 5px; 
+   -webkit-appearance: none;
+   background-color: white;
+}
