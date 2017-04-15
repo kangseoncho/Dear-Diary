@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 
-app.use(express.static(path.join(__dirname, "./../public")))
+app.use(express.static(path.join(__dirname, "./../public/blog")))
 app.use(bodyParser.json())
 
 //post should be able to put entry into DB
@@ -28,15 +28,17 @@ app.post('/entries',(request, response) => {
     })
 
     response.json(request.body)
-   // db.close()
+    //db.close()
 })
 
 //should make a get request to get the entry based on the title
 app.get('/findEntries', (request, response) => {
    db.all("SELECT * FROM entries", (err, rows) => {
        if(err) console.log(err)
-       else console.log("rows, rows: ", rows)
-       response.send(rows)
+       else {
+        //console.log("rows, rows: ", rows)
+        response.send(rows)
+       }
    })
 })
 
