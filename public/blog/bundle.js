@@ -25734,7 +25734,7 @@ var App = function (_Component) {
   _createClass(App, [{
     key: 'logTime',
     value: function logTime() {
-      return (0, _moment2.default)().format('MMMM Do YYYY'); //is a string
+      return (0, _moment2.default)().format('MMMM Do, YYYY'); //typeof === string
     }
 
     //custom function to update state based on entry entries

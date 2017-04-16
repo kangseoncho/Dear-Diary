@@ -21,7 +21,7 @@ class App extends Component {
 
 //will get the time and date of the diary entry
 logTime () {
-  return moment().format('MMMM Do YYYY'); //is a string
+  return moment().format('MMMM Do, YYYY'); //typeof === string
 }
 
  //custom function to update state based on entry entries
