@@ -20,7 +20,7 @@ const connection = new Sequelize('kangseoncho', 'kangseoncho', 'blog', {
 
 //create DB Model
 const Entries = connection.define('entries',{
-    user: Sequelize.STRING,
+    user: { type: Sequelize.STRING, primarykey: true },
     password: Sequelize.STRING,
     title: Sequelize.STRING,
     logTime: Sequelize.STRING,
@@ -41,8 +41,8 @@ app.post('/entries',(request, response) => {
 
     //input stuff into DB
     Entries.create({
-        user: request.body.username,
-        password: "test password",
+        user: "test user",
+        password: "test password"
         title: request.body.title,
         logTime: request.body.logTime,
         entry: request.body.entry
@@ -54,7 +54,9 @@ app.post('/entries',(request, response) => {
 
 //should make a get request to get the entry based on the title
 app.get('/findEntries', (request, response) => {
-   
+   Entries.findAll().then((result) => {
+     response.json(result);
+   })
 })
 
 
