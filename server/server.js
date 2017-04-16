@@ -42,7 +42,7 @@ app.post('/entries',(request, response) => {
     //input stuff into DB
     Entries.create({
         user: "test user",
-        password: "test password"
+        password: "test password",
         title: request.body.title,
         logTime: request.body.logTime,
         entry: request.body.entry
