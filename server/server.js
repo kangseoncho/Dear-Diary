@@ -28,7 +28,7 @@ app.post('/entries',(request, response) => {
     })
 
     response.json(request.body)
-    //db.close()
+   // db.close()
 })
 
 //should make a get request to get the entry based on the title
