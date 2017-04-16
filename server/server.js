@@ -1,10 +1,34 @@
-const sqlite3 = require('sqlite3').verbose()
-const db = new sqlite3.Database('mydb.db')
+const Sequelize = require('sequelize');
+const pg = require('pg');
 
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
+
+//set DB connection
+const connection = new Sequelize('kangseoncho', 'kangseoncho', 'blog', {
+  host: 'localhost',
+  dialect: 'postgres',
+
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  },
+});
+
+//create DB Model
+const Entries = connection.define('entries',{
+    user: Sequelize.STRING,
+    password: Sequelize.STRING,
+    title: Sequelize.STRING,
+    logTime: Sequelize.STRING,
+    entry: Sequelize.TEXT
+});
+
+//create DB if one does not exist already
+connection.sync();
 
 
 app.use(express.static(path.join(__dirname, "./../public/blog")))
@@ -15,35 +39,25 @@ app.post('/entries',(request, response) => {
     //console.log("request ", request)
     console.log("I am request.body: ", request.body) //THIS IS THE STUFF WE WANT!!!!
 
-    //creates and insert value into the SQlite db (mydb)
-    db.serialize(function () {
-        db.run('CREATE TABLE IF NOT EXISTS entries (user TEXT, title TEXT, entry TEXT, logTime TEXT)')
-        let stmt = db.prepare('INSERT INTO entries (user, title, entry, logTime) VALUES (?, ?, ?, ?)')
+    //input stuff into DB
+    Entries.create({
+        user: request.body.username,
+        password: "test password",
+        title: request.body.title,
+        logTime: request.body.logTime,
+        entry: request.body.entry
+    }).then((task) => task.save());
 
-        stmt.run(request.body.user, request.body.title, request.body.entry, request.body.logTime)
-        stmt.finalize()
-        // db.each('SELECT user, title, entry, logTime FROM entries', function (err, row) {
-        //     //if (err) console.log(err)        
-        // })
-    })
-
+    //post to DB using sequelize
     response.json(request.body)
-    //db.close()
 })
 
 //should make a get request to get the entry based on the title
 app.get('/findEntries', (request, response) => {
-   db.all("SELECT * FROM entries", (err, rows) => {
-       if(err) console.log(err)
-       else {
-        //console.log("rows, rows: ", rows)
-        response.send(rows)
-       }
-   })
+   
 })
+
 
 app.listen(3000, function () {
   console.log('listening on port 3000!')
 })
-
-
