@@ -3,20 +3,20 @@ function test() {
     console.log(document.getElementById('existingUser').value)
 }
 
-function verify() {
+function verification() {
     axios.post('http://localhost:3000/verification', {
-        username: document.getElementById('existingUser').value,
+        user: document.getElementById('existingUser').value,
         password: document.getElementById('existingPassword').value
     }).then((res) => {
-        console.log("i am response after verification: ", res)
+       console.log("i am axios request verification: ", res)
     })
 }
 
 function signup() {
     axios.post('http://localhost:3000/newuser', {
-        username: document.getElementById('newUser').value,
+        user: document.getElementById('newUser').value,
         password: document.getElementById('newPassword').value
     }).then((res) => {
-        console.log("i am response after signup: ", res)
+        console.log("i am axios request signup: ", res)
     })
 }

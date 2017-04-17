@@ -41,6 +41,7 @@ logTime () {
      entry: this.state.entry,
      logTime: this.logTime()
    }).then((response) => {
+     alert("logged new blog entry");
      console.log("I am from Axios post request: ", response)
    })
  }

@@ -1,32 +1,39 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="style.css" type="text/css">
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  </head>
-  <body>
-    <div class="intro">Welcome to Dear Diary</div>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css" type="text/css">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <div class="intro">Welcome to Dear Diary</div>
+  <br>
+
+  <div class="information">
+    Please log-in
     <br>
-    
-    <div class="information">
-      Please log-in
-      <br>
-        Username: <input type="text" id="existingUser"> <br>
-        Password: <input type="password" id="existingPassword"> <br>
-        <input type="submit" value="log-In" onclick="test()">
-    </div>
-        <br><br><br>
+    <!--<form action="/verification" method="POST">-->
+      Username: <input type="text" id="existingUser"> <br> 
+      Password: <input type="password" id="existingPassword"> <br>
+      <input type="submit" value="log-In" onclick="verification()">
+    <!--</form>-->
+  </div>
+  <br><br><br>
 
-    <div class="information">
-        New User? Sign Up!
-        <br>
-        Username: <input type="text" id="newUser"> <br>
-        Password: <input type="password" id="newPassword"> <br>
-        <input type="submit" value="Sign-Up" onclick="signup()">
-    </div>
+  <div class="information">
+    New User? Sign Up!
+    <br>
+    <!--<form action="/newuser" method="POST">-->
+      Username: <input type="text" id="newUser"> <br> 
+      Password: <input type="password" id="newPassword"> <br>
+      <input type="submit" value="Sign-Up" onclick="signup()">
+    <!--</form>-->
+  </div>
 
-  </body>
-    <script src="main.js"></script>
+</body>
+<script src="main.js"></script>
+
 </html>

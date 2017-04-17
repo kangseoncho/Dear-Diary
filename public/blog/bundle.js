@@ -25761,6 +25761,7 @@ var App = function (_Component) {
         entry: this.state.entry,
         logTime: this.logTime()
       }).then(function (response) {
+        alert("logged new blog entry");
         console.log("I am from Axios post request: ", response);
       });
     }
