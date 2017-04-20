@@ -6,6 +6,21 @@ const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 
+//node eventEmitter
+const EventEmitter = require('events');
+class MyEmitter extends EventEmitter { }
+
+const myEmitter = new MyEmitter();
+myEmitter.on('event', () => {
+  console.log('an event occurred!');
+});
+
+//set what event listen should listen for
+myEmitter.addListener('get', (request, response) => {
+  console.log("1!!!!!1!!!!!!!!1!!!!!!1!!!!!!", request.body);
+});
+
+
 //set DB connection
 const connection = new Sequelize('kangseoncho', 'kangseoncho', 'blog', {
   host: 'localhost',
@@ -30,15 +45,11 @@ const Entries = connection.define('entries',{
 //create DB if one does not exist already
 connection.sync();
 
-
 app.use(express.static(path.join(__dirname, "./../public/blog")))
 app.use(bodyParser.json())
 
 //post should be able to put entry into DB
 app.post('/entries',(request, response) => {
-    //console.log("request ", request)
-    console.log("I am request.body: ", request.body) //THIS IS THE STUFF WE WANT!!!!
-
     //input stuff into DB
     Entries.create({
         user: "test user",
@@ -47,6 +58,8 @@ app.post('/entries',(request, response) => {
         logTime: request.body.logTime,
         entry: request.body.entry
     }).then((task) => task.save());
+
+    myEmitter.emit('get', request, response);
 
     //post to DB using sequelize
     response.json(request.body)
