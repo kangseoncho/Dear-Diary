@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "http://localhost:3000/public/blog";
+/******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 224);
@@ -25716,7 +25716,7 @@ var App = function (_Component) {
 
     _this.state = {
       title: "",
-      user: "LittleToy",
+      user: document.cookie.slice(5),
       entry: "",
       date: ""
     };
@@ -26774,7 +26774,6 @@ var Page = function (_Component) {
     value: function render() {
       //console.log(this.props.entry) // logs the current state and the text entry
       //console.log(this.props.updateEntry) //logs the function itself
-      console.log("from pages: ", this.props.logTime);
 
       return _react2.default.createElement(
         "div",
@@ -26786,7 +26785,8 @@ var Page = function (_Component) {
           _react2.default.createElement(
             "h1",
             null,
-            "Welcome to Dear Diary"
+            "Welcome to Dear Diary, ",
+            this.props.user
           ),
           _react2.default.createElement(
             "h4",

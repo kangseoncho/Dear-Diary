@@ -8,7 +8,7 @@ class App extends Component {
     super();
     this.state = {
       title: "",
-      user: "LittleToy",
+      user: document.cookie.slice(5),
       entry: "",
       date: ""
     };
@@ -67,7 +67,7 @@ getFromDB() {
   render() {
     return (
       <div className="App">
-        <Book entry = {this.state.entry} user={this.state.user} title={this.state.title} updateTitle={this.updateTitle} logTime={this.logTime()} 
+        <Book entry = {this.state.entry} user={this.state.user} title={this.state.title} updateTitle={this.updateTitle} logTime={this.logTime()}
         updateEntry={this.updateEntry} postToDB={this.postToDB} getFromDB={this.getFromDB} />
       </div>
     );

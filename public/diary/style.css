@@ -42,12 +42,12 @@ body {
 
 .button {
    position: relative;
-   padding: 10px; 
+   padding: 10px;
    margin-left: 2%;
    width: 20%;
    height: 10%;
    -moz-appearance: none;
-   border-radius: 5px; 
+   border-radius: 5px;
    -webkit-appearance: none;
    background-color: white;
 }

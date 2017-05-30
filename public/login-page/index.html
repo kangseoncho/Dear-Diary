@@ -18,8 +18,9 @@
     <form action="/verification" method="POST">
       Username: <input type="text" id="existingUser" name="user"> <br>
       Password: <input type="password" id="existingPassword" name="password"> <br>
-      <input type="submit" value="log-In">
+      <input type="submit" value="log-In" onclick="existingStorage()">
     </form>
+    <!--<button onclick="currStorage()">testing button</button>-->
   </div>
   <br><br><br>
 
@@ -29,10 +30,20 @@
     <form action="/newuser" method="POST">
       Username: <input type="text" id="newUser" name="user"> <br>
       Password: <input type="password" id="newPassword" name="password"> <br>
-      <input type="submit" value="Sign-Up">
+      <input type="submit" value="Sign-Up" onclick="newStorage()">
     </form>
   </div>
 
 </body>
+  <script>
+    function newStorage() {
+      document.cookie = `user=${document.getElementById('newUser').value}`;
+      console.log("text field: ", document.getElementById('newUser').value);
+    }
 
+    function existingStorage() {
+      document.cookie = `user=${document.getElementById('existingUser').value}`;
+      console.log("text field: ", document.getElementById('existingUser').value);
+    }
+  </script>
 </html>
