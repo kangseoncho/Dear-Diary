@@ -5,46 +5,55 @@ const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 
-app.use(express.static(path.join(__dirname, "./../public/login-page")));
+app.use('/',express.static(path.join(__dirname, "./../public/login-page")));
+//app.use('/welcome', express.static(path.join(__dirname, './../public/blog')))
 app.use(bodyParser.json());
 
 //post info for verification
-app.post('/verification', (request, response) => {
-  console.log("i am response.body from verification", request.body);
-  response.json(request.body)
-  //response.redirect()
+app.post('/verification', (req, res) => {
+  console.log("i am res.body from verification", req.body);
+  //res.json(req.body)
+  //res.sendFile(path.join(__dirname, './../public/blog/index.html'));
+  res.redirect('/welcome');
+  return
 });
 
+app.get('/welcome', (req,res) => {
+  res.sendFile(path.join(__dirname, './../public/blog/index.html'))
+  return
+})
+
 //post for new user
-app.post('/newuser', (request, response) => {
-  console.log("i am response.body from newuser", request.body)
-  response.json(request.body)
+app.post('/newuser', (req, res) => {
+  console.log("i am res.body from newuser", req.body)
+  res.json(req.body)
 });
 
 
 //post should be able to put entry into DB
-app.post('/entries',(request, response) => {
+app.post('/entries',(req, res) => {
     //find user and save entry
     Entries.update({
-        title: request.body.title,
-        logTime: request.body.logTime,
-        entry: request.body.entry
-    }, { 
+        title: req.body.title,
+        logTime: req.body.logTime,
+        entry: req.body.entry
+    }, {
       where: {user: "test user"} //user should be dynamic. value should come from login
     }).then((result) => {
       //console.log("i am promise after updating user entry: ", result)
   })
 
-    response.json(request.body)
+    res.json(req.body)
 });
 
-//should make a get request to get the entry based on the title
-app.get('/findEntries', (request, response) => {
-   Entries.findAll().then((result) => response.json(result))
+//should make a get req to get the entry based on the title
+app.get('/findEntries', (req, res) => {
+   Entries.findAll().then((result) => res.json(result))
 });
 
 
-app.listen(3000, function () {
+app.listen(3000, () => {
+  console.log("direectory name: ",__dirname);
   console.log('listening on port 3000!')
 });
 

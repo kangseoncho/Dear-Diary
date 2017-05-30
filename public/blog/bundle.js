@@ -26786,8 +26786,7 @@ var Page = function (_Component) {
           _react2.default.createElement(
             "h1",
             null,
-            "Welcome to Dear Diary, ",
-            this.props.user
+            "Welcome to Dear Diary"
           ),
           _react2.default.createElement(
             "h4",
