@@ -84,5 +84,3 @@ app.listen(3000, () => {
   console.log("direectory name: ",__dirname);
   console.log(`listening on port ${port}!`)
 });
-
-
