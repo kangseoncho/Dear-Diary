@@ -15,22 +15,18 @@ app.use(bodyParser.json());
 let currentUser = app.locals.user;
 
 //two below are served statically via app.use. Only here to make redirect work.
-app.get('/', (req, res) => {
-  return
-})
-app.get('/welcome', (req, res) => {
-  return
-})
+app.get('/', (req, res) => { return })
+app.get('/welcome', (req, res) => { return })
 
 //post info for verification
 app.post('/verification', (req, res) => {
   console.log("i am res.body from verification", req.body);
   Entries.findOne({where: {user: req.body.user, password: req.body.password}}).then(entry => {
     if(entry === null) {
-      console.log("i am null entry: ", entry);
+      // console.log("i am null entry: ", entry);
       return res.redirect('/');
     } else {
-      console.log("i am entry: ", entry);
+      // console.log("i am entry: ", entry);
       currentUser = req.body.user;
       return res.redirect('/welcome');
     }

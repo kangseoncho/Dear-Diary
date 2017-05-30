@@ -5,10 +5,11 @@ module.exports = {
     //do webpack stuff here
     entry: path.join(__dirname, 'src', 'index.js'),
     output: {
-        path: path.resolve('public/blog'), //determines where the file is going (?)
-        publicPath: 'http://localhost:3000/public/diary',
+        path: path.resolve('public/diary'), //determines where the file is going (?)
+        // publicPath: 'http://localhost:3000/public/diary',
         filename: 'bundle.js',
     },
+    // devtool: 'source-map',
     //can put plug in here if we want
     module: {
         loaders: [
