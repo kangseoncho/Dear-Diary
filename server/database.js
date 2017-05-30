@@ -16,8 +16,8 @@ const connection = new Sequelize('kangseoncho', 'kangseoncho', 'kangseoncho', {
 
 //create DB Model
 const Entries = connection.define('entries',{
-    user: {type: Sequelize.STRING},
-    password: {type: Sequelize.STRING},
+    user: {type: Sequelize.STRING, allowNull: false},
+    password: {type: Sequelize.STRING, allowNull: false},
     title: Sequelize.STRING,
     logTime: Sequelize.STRING,
     entry: Sequelize.TEXT
