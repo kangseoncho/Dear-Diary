@@ -6,7 +6,7 @@ module.exports = {
     entry: path.join(__dirname, 'src', 'index.js'),
     output: {
         path: path.resolve('public/blog'), //determines where the file is going (?)
-        publicPath: 'http://localhost:3000/public/blog',
+        publicPath: 'http://localhost:3000/public/diary',
         filename: 'bundle.js',
     },
     //can put plug in here if we want

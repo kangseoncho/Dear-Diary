@@ -6,8 +6,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const port = 3000;
 
-app.use('/',express.static(path.join(__dirname, "./../public/login-page")));
-app.use('/welcome', express.static(path.join(__dirname, './../public/blog')))
+app.use('/', express.static(path.join(__dirname, "./../public/login-page")));
+app.use('/welcome', express.static(path.join(__dirname, './../public/diary')))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 

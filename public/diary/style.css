@@ -1,0 +1,62 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-image: url('http://wallzoa.com/wp-content/uploads/2013/06/twilight-backgrounds-woods.jpeg');
+    height: auto;
+}
+
+.Welcome {
+    /*border: 1px black solid;*/
+    text-align: center;
+    /*margin-left: 10%;*/
+    margin-top: -2%;
+    height: auto;
+    color: white;
+}
+
+.currTitle {
+    width: 20%;
+    background-color: transparent;
+    height: 30px;
+    color: white;
+    font-size: 25px;
+}
+
+
+.Entry {
+    padding: 20px;
+    border: 1px white solid;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    width: 70%;
+    position: relative;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+}
+
+.log {
+    padding: 10px;
+}
+
+.button {
+   position: relative;
+   padding: 10px; 
+   margin-left: 2%;
+   width: 20%;
+   height: 10%;
+   -moz-appearance: none;
+   border-radius: 5px; 
+   -webkit-appearance: none;
+   background-color: white;
+}
+
+#searchField {
+   font-size: 20px;
+   width: 30%;
+   height: 30px;
+   position: relative;
+   background-color: transparent;
+   color: white;
+}
