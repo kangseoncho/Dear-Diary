@@ -15,25 +15,25 @@
   <div class="information">
     Please log-in
     <br>
-    <!--<form action="/verification" method="POST">-->
-      Username: <input type="text" id="existingUser"> <br> 
-      Password: <input type="password" id="existingPassword"> <br>
-      <input type="submit" value="log-In" onclick="verification()">
-    <!--</form>-->
+    <form action="/verification" method="POST">
+      Username: <input type="text" id="existingUser" name="user"> <br>
+      Password: <input type="password" id="existingPassword" name="password"> <br>
+      <input type="submit" value="log-In">
+    </form>
   </div>
   <br><br><br>
 
   <div class="information">
     New User? Sign Up!
     <br>
-    <!--<form action="/newuser" method="POST">-->
-      Username: <input type="text" id="newUser"> <br> 
-      Password: <input type="password" id="newPassword"> <br>
-      <input type="submit" value="Sign-Up" onclick="signup()">
-    <!--</form>-->
+    <form action="/newuser" method="POST">
+      Username: <input type="text" id="newUser" name="user"> <br>
+      Password: <input type="password" id="newPassword" name="password"> <br>
+      <input type="submit" value="Sign-Up">
+    </form>
   </div>
 
 </body>
-<script src="main.js"></script>
+<script src="./main.js"></script>
 
 </html>
