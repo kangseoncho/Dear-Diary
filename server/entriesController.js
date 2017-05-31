@@ -10,6 +10,7 @@ const entriesController = {
       } else {
         // console.log("i am entry: ", entry);
         currentUser = req.body.user;
+        currentPassword = req.body.password;
         return res.redirect('/welcome');
       }
     })
@@ -26,9 +27,13 @@ const entriesController = {
       } else {
         // console.log("i am entry and didnt find stuff: ", entry)
         //new user, therefore make new entry
-        Entries.create({ user: req.body.user, password: req.body.password })
+        Entries.create({
+          user: req.body.user,
+          password: req.body.password
+        })
         //app wide declaration of user
         currentUser = req.body.user;
+        currentPassword = req.body.password;
         return res.redirect('/welcome');
       }
     })
@@ -36,21 +41,38 @@ const entriesController = {
   },
 
   updateEntries(req, res) {
-    //find user and save entry
-    Entries.update({
-      title: req.body.title,
-      logTime: req.body.logTime,
-      entry: req.body.entry
-    }, {
-        where: { user: currentUser, logTime: req.body.logTime } //got to check if logTime works
-      }).then((result) => {
-        //console.log("i am promise after updating user entry: ", result)
-      })
+    Entries.findOne({ where: { user: req.body.user, logTime: req.body.logTime } }).then(entry => {
+      if (entry === null) {
+        Entries.create({
+          user: req.body.user,
+          password: currentPassword,
+          title: req.body.title,
+          logTime: req.body.logTime,
+          entry: req.body.entry
+        }).then(result => {
+          res.json(req.body);
+        })
+        return
+      } else {
+        Entries.update({
+          title: req.body.title,
+          logTime: req.body.logTime,
+          entry: req.body.entry
+        }, { where: { user: req.body.user, logTime: req.body.logTime }}).then(result => {
+          res.json(req.body);
+        })
+        return
+      }
+    })
     res.json(req.body);
+    return;
   },
 
   getAllEntries(req, res) {
-    Entries.findAll().then((result) => res.json(result));
+    Entries.findAll().then((entries) => {
+      //console.log("i am findAll: ", entries)
+      res.json(entries)
+    });
   }
 }
 
