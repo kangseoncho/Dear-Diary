@@ -11,8 +11,9 @@ app.use('/welcome', express.static(path.join(__dirname, './../public/diary')))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
-//set a user for the duration of the app.
+//set a user & password for the duration of the app.
 let currentUser = app.locals.user;
+let currentPassword = app.locals.password;
 
 //two below are served statically via app.use. Only here to make redirect work.
 app.get('/', (req, res) => { return })
