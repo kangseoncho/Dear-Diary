@@ -28,8 +28,11 @@ app.post('/newuser', EntriesController.newUser);
 //post should be able to put entry into DB
 app.post('/entries', EntriesController.updateEntries);
 
-//should make a get req to get the entry based on the title
-app.get('/findEntries', EntriesController.getAllEntries);
+//get all entries
+app.get('/getAllEntries', EntriesController.getAllEntries);
+
+//should make a get req to get the entry based on the user & date
+app.get('/findEntries', EntriesController.findEntries);
 
 
 app.listen(3000, () => {

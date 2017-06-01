@@ -72,6 +72,10 @@ const entriesController = {
       //console.log("i am findAll: ", entries)
       res.json(entries)
     });
+  },
+
+  findEntries(req, res) {
+
   }
 }
 
