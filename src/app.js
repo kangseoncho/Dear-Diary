@@ -17,6 +17,7 @@ class App extends Component {
     this.postToDB = this.postToDB.bind(this);
     this.logTime = this.logTime.bind(this);
     this.getFromDB = this.getFromDB.bind(this);
+    this.updateSearchDate = this.updateSearchDate.bind(this);
   }
 
   //will get the time and date of the diary entry
@@ -30,6 +31,9 @@ class App extends Component {
   }
   updateTitle(event) {
     this.setState({ title: event.target.value })
+  }
+  updateSearchDate(event) {
+    this.setState({ searchDate: event.target.value })
   }
 
   //function that will grab current state and make post request
@@ -47,18 +51,36 @@ class App extends Component {
 
   //get entries from DB
   getFromDB() {
-    axios.get('http://localhost:3000/findEntries')
+    axios.get('http://localhost:3000/getAllEntries')
       .then((response) => {
+        //console.log("response from get request: ", response)
         //will fild the object with the title in the seachbox
-        let searchItem = document.getElementById('searchField').value;
-        let result = response.data.filter((element, index) => searchItem === element.title)
+        let searchUser = this.state.user;
+        let searchDate = this.state.searchDate;
+        let result = response.data.filter((element, index) => searchDate === element.logTime && element.user === searchUser)
 
-        //populate fields with past information
-        this.setState({
-          user: result[0].user,
-          title: result[0].title,
-          entry: result[0].entry
-        })
+        if (result.length === 0) {
+          alert('no matching entries found!');
+          this.setState({
+            user: '',
+            title: '',
+            entry: ''
+          })
+        } else {
+          //populate fields with past information
+          this.setState({
+            user: result[0].user,
+            title: result[0].title,
+            entry: result[0].entry
+          })
+        }
+      })
+      .catch((err) => console.log(err))
+  }
+
+  getAllFromDB() {
+    axios.get('http://localhost:3000/getAllEntries')
+      .then((response) => {
       })
       .catch((err) => console.log(err))
   }
@@ -66,8 +88,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <h1>Welcome to Dear Diary, {this.state.user}</h1>
+
         <Book entry={this.state.entry} user={this.state.user} title={this.state.title} updateTitle={this.updateTitle} logTime={this.logTime()}
-          updateEntry={this.updateEntry} postToDB={this.postToDB} getFromDB={this.getFromDB} />
+          updateEntry={this.updateEntry} postToDB={this.postToDB} getFromDB={this.getFromDB}
+          updateSearchDate={this.updateSearchDate} />
       </div>
     );
   }
