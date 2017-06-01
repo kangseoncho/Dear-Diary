@@ -9,7 +9,7 @@ module.exports = {
         // publicPath: 'http://localhost:3000/public/diary',
         filename: 'bundle.js',
     },
-    // devtool: 'source-map',
+    devtool: 'source-map',
     //can put plug in here if we want
     module: {
         loaders: [
