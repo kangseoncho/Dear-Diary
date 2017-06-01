@@ -26663,8 +26663,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = __webpack_require__(27);
 
 var _react2 = _interopRequireDefault(_react);
@@ -26673,42 +26671,16 @@ var _page = __webpack_require__(225);
 
 var _page2 = _interopRequireDefault(_page);
 
-var _axios = __webpack_require__(56);
-
-var _axios2 = _interopRequireDefault(_axios);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Book = function (_Component) {
-  _inherits(Book, _Component);
-
-  function Book() {
-    _classCallCheck(this, Book);
-
-    return _possibleConstructorReturn(this, (Book.__proto__ || Object.getPrototypeOf(Book)).apply(this, arguments));
-  }
-
-  _createClass(Book, [{
-    key: 'render',
-    value: function render() {
-      // should be able to access a particular entry with a get request.
-      return _react2.default.createElement(
-        'div',
-        { className: 'Book' },
-        _react2.default.createElement(_page2.default, { user: this.props.user, updateTitle: this.props.updateTitle, entry: this.props.entry, title: this.props.title,
-          logTime: this.props.logTime, updateEntry: this.props.updateEntry, postToDB: this.props.postToDB, getFromDB: this.props.getFromDB })
-      );
-    }
-  }]);
-
-  return Book;
-}(_react.Component);
+var Book = function Book(props) {
+  return _react2.default.createElement(
+    'div',
+    { className: 'Book' },
+    _react2.default.createElement(_page2.default, { user: props.user, updateTitle: props.updateTitle, entry: props.entry, title: props.title,
+      logTime: props.logTime, updateEntry: props.updateEntry, postToDB: props.postToDB, getFromDB: props.getFromDB })
+  );
+};
 
 exports.default = Book;
 
@@ -26746,90 +26718,64 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = __webpack_require__(27);
 
 var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Page = function (_Component) {
-  _inherits(Page, _Component);
-
-  function Page() {
-    _classCallCheck(this, Page);
-
-    return _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).apply(this, arguments));
-  }
-
-  _createClass(Page, [{
-    key: "render",
-    value: function render() {
-      //console.log(this.props.entry) // logs the current state and the text entry
-      //console.log(this.props.updateEntry) //logs the function itself
-
-      return _react2.default.createElement(
+var Page = function Page(props) {
+  return _react2.default.createElement(
+    "div",
+    { className: "Page" },
+    _react2.default.createElement(
+      "div",
+      { className: "Welcome" },
+      _react2.default.createElement("br", null),
+      _react2.default.createElement(
+        "h1",
+        null,
+        "Welcome to Dear Diary, ",
+        props.user
+      ),
+      _react2.default.createElement(
+        "h4",
+        null,
+        "Entry for the Date: ",
+        props.logTime
+      ),
+      _react2.default.createElement(
+        "h3",
+        null,
+        "Title:   ",
+        _react2.default.createElement("input", { type: "text", className: "currTitle", value: props.title, onChange: props.updateTitle }),
+        "  "
+      ),
+      _react2.default.createElement(
         "div",
-        { className: "Page" },
+        null,
+        _react2.default.createElement("textarea", { className: "Entry", placeholder: "Start Writing...", cols: "70", wrap: "soft", rows: "30",
+          onChange: props.updateEntry, value: props.entry })
+      ),
+      _react2.default.createElement(
+        "div",
+        { className: "log" },
         _react2.default.createElement(
           "div",
-          { className: "Welcome" },
-          _react2.default.createElement("br", null),
-          _react2.default.createElement(
-            "h1",
-            null,
-            "Welcome to Dear Diary, ",
-            this.props.user
-          ),
-          _react2.default.createElement(
-            "h4",
-            null,
-            "Entry for the Date: ",
-            this.props.logTime
-          ),
-          _react2.default.createElement(
-            "h3",
-            null,
-            "Title:   ",
-            _react2.default.createElement("input", { type: "text", className: "currTitle", value: this.props.title, onChange: this.props.updateTitle }),
-            "  "
-          ),
-          _react2.default.createElement(
-            "div",
-            null,
-            _react2.default.createElement("textarea", { className: "Entry", placeholder: "Start Writing...", cols: "70", wrap: "soft", rows: "30",
-              onChange: this.props.updateEntry, value: this.props.entry })
-          ),
-          _react2.default.createElement(
-            "div",
-            { className: "log" },
-            _react2.default.createElement(
-              "div",
-              null,
-              _react2.default.createElement("input", { type: "submit", className: "button", value: "Log", onClick: this.props.postToDB }),
-              " "
-            )
-          ),
-          _react2.default.createElement(
-            "div",
-            { className: "log" },
-            _react2.default.createElement("input", { type: "text", id: "searchField" }),
-            _react2.default.createElement("input", { type: "submit", className: "button", value: "Get Past Entries", onClick: this.props.getFromDB })
-          )
+          null,
+          _react2.default.createElement("input", { type: "submit", className: "button", value: "Log", onClick: props.postToDB }),
+          " "
         )
-      );
-    }
-  }]);
-
-  return Page;
-}(_react.Component);
+      ),
+      _react2.default.createElement(
+        "div",
+        { className: "log" },
+        _react2.default.createElement("input", { type: "text", id: "searchField" }),
+        _react2.default.createElement("input", { type: "submit", className: "button", value: "Get Past Entries", onClick: props.getFromDB })
+      )
+    )
+  );
+};
 
 exports.default = Page;
 

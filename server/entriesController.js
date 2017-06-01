@@ -64,7 +64,6 @@ const entriesController = {
         return
       }
     })
-    res.json(req.body);
     return;
   },
 
