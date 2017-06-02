@@ -10,7 +10,8 @@ class App extends Component {
       title: "",
       user: document.cookie.slice(5),
       entry: "",
-      date: ""
+      date: "",
+      archive: []
     };
     this.updateTitle = this.updateTitle.bind(this);
     this.updateEntry = this.updateEntry.bind(this);
@@ -18,6 +19,8 @@ class App extends Component {
     this.logTime = this.logTime.bind(this);
     this.getFromDB = this.getFromDB.bind(this);
     this.updateSearchDate = this.updateSearchDate.bind(this);
+    this.getAllFromDB = this.getAllFromDB.bind(this);
+    this.backToWelcome = this.backToWelcome.bind(this);
   }
 
   //will get the time and date of the diary entry
@@ -81,8 +84,16 @@ class App extends Component {
   getAllFromDB() {
     axios.get('http://localhost:3000/getAllEntries')
       .then((response) => {
+        let searchUser = this.state.user;
+        let result = response.data.filter((element, index) => element.user === searchUser)
+        this.setState({archive: result})
       })
       .catch((err) => console.log(err))
+  }
+
+  backToWelcome() {
+    const tempArchive = [];
+    this.setState({archive: tempArchive});
   }
 
   render() {
@@ -91,8 +102,16 @@ class App extends Component {
         <h1>Welcome to Dear Diary, {this.state.user}</h1>
 
         <Book entry={this.state.entry} user={this.state.user} title={this.state.title} updateTitle={this.updateTitle} logTime={this.logTime()}
+          archive={this.state.archive}
           updateEntry={this.updateEntry} postToDB={this.postToDB} getFromDB={this.getFromDB}
-          updateSearchDate={this.updateSearchDate} />
+          updateSearchDate={this.updateSearchDate} getAllFromDB={this.getAllFromDB} backToWelcome={this.backToWelcome}/>
+
+        <div className="log">
+          Date: <input type="text" id="dateField" onChange={this.updateSearchDate}/> <br/>
+          <input type="submit" className="button" value="Get Past Entry" onClick={this.getFromDB} />
+          <input type="submit" className="button" value="Get All Past Entries" onClick={this.getAllFromDB} />
+        </div>
+
       </div>
     );
   }
