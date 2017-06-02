@@ -74,9 +74,6 @@ const entriesController = {
     });
   },
 
-  findEntries(req, res) {
-
-  }
 }
 
 module.exports = entriesController;

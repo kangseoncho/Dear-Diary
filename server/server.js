@@ -31,9 +31,6 @@ app.post('/entries', EntriesController.updateEntries);
 //get all entries
 app.get('/getAllEntries', EntriesController.getAllEntries);
 
-//should make a get req to get the entry based on the user & date
-app.get('/findEntries', EntriesController.findEntries);
-
 
 app.listen(3000, () => {
   console.log("direectory name: ",__dirname);
