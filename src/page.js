@@ -18,12 +18,6 @@ const Page = (props) => {
           <div><input type="submit" className="button" value="Log" onClick={props.postToDB} /> </div>
         </div>
 
-        <div className="log">
-          Date: <input type="text" id="dateField" onChange={props.updateSearchDate}/> <br/>
-          <input type="submit" className="button" value="Get Past Entry" onClick={props.getFromDB} />
-          <input type="submit" className="button" value="Get All Past Entries" onClick={props.getAllFromDB} />
-        </div>
-
       </div>
     </div>
   )
