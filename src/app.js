@@ -61,13 +61,13 @@ class App extends Component {
         let searchUser = this.state.user;
         let searchDate = this.state.searchDate;
         let result = response.data.filter((element, index) => searchDate === element.logTime && element.user === searchUser)
+        const emptyField = ''
 
         if (result.length === 0) {
           alert('no matching entries found!');
           this.setState({
-            user: '',
-            title: '',
-            entry: ''
+            title: emptyField,
+            entry: emptyField
           })
         } else {
           //populate fields with past information
@@ -86,32 +86,41 @@ class App extends Component {
       .then((response) => {
         let searchUser = this.state.user;
         let result = response.data.filter((element, index) => element.user === searchUser)
-        this.setState({archive: result})
+        this.setState({ archive: result })
       })
       .catch((err) => console.log(err))
   }
 
   backToWelcome() {
     const tempArchive = [];
-    this.setState({archive: tempArchive});
+    const emptyField = '';
+    this.setState({ archive: tempArchive });
+    this.setState({
+      title: emptyField,
+      entry: emptyField
+    })
   }
 
   render() {
     return (
       <div className="App">
-        <h1>Welcome to Dear Diary, {this.state.user}</h1>
 
-        <Book entry={this.state.entry} user={this.state.user} title={this.state.title} updateTitle={this.updateTitle} logTime={this.logTime()}
-          archive={this.state.archive}
-          updateEntry={this.updateEntry} postToDB={this.postToDB} getFromDB={this.getFromDB}
-          updateSearchDate={this.updateSearchDate} getAllFromDB={this.getAllFromDB} backToWelcome={this.backToWelcome}/>
+        <div className="intro">Welcome to Dear Diary, {this.state.user}</div>
 
-        <div className="log">
-          Date: <input type="text" id="dateField" onChange={this.updateSearchDate}/> <br/>
-          <input type="submit" className="button" value="Get Past Entry" onClick={this.getFromDB} />
+        <div className="menu">
+          <span>Get Past Entry by Date: </span>
+          <input type="text" id="dateField" onChange={this.updateSearchDate} placeholder="e.g. Jan 1st, 1970"/>
+          <input type="submit" value="Find" className="button" id="find" onClick={this.getFromDB} />
+
           <input type="submit" className="button" value="Get All Past Entries" onClick={this.getAllFromDB} />
         </div>
 
+        <div className="log">
+          <Book entry={this.state.entry} user={this.state.user} title={this.state.title} updateTitle={this.updateTitle} logTime={this.logTime()}
+            archive={this.state.archive}
+            updateEntry={this.updateEntry} postToDB={this.postToDB} getFromDB={this.getFromDB}
+            updateSearchDate={this.updateSearchDate} getAllFromDB={this.getAllFromDB} backToWelcome={this.backToWelcome} />
+        </div>
       </div>
     );
   }
