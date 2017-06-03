@@ -1,0 +1,88 @@
+@import'_variables';
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: $testBackground;
+    text-align: center;
+    color: $fontColor;
+    font: {
+        family: "Lucida Grande", Helvetica, sans-serif;
+    }
+}
+
+textarea {
+    background-color: transparent;
+    color: $fontColor;
+}
+
+// .App {
+//     // display: flex;
+// }
+
+.intro {
+    font-size: 33px;
+    margin: {
+        top: 5%;
+    }
+}
+
+.menu {
+    width: 100%;
+    margin: {
+        top: 3%;
+        bottom: 1%;
+    }
+    span {
+        color: $complemetary;
+        font-size: $menuFontSize;
+    }
+    #dateField {
+        font-size: 18px;
+    }
+    #find {
+        margin: {
+            right: 8%;
+        }
+    }
+    input {
+        background-color: transparent;
+        color: $fontColor;
+    }
+    .button {
+        color: $complemetary;
+        font-size: $menuFontSize;
+        border: none;
+        cursor: pointer;
+    }
+}
+
+.log {
+    // width: 100%;
+    input {
+        background-color: transparent;
+        color: $fontColor;
+    }
+    textarea {
+        font-size: $logFontSize;
+    }
+}
+
+.Page {
+    .dateEntry, .currTitle, .titleEntry {
+        height: auto;
+        font-size: $logFontSize;
+        margin: {
+            top: 1%;
+            bottom: 1%;
+        }
+    }
+     #inputEntry {
+         width: auto;
+         font-size: $logFontSize;
+         margin: {
+             top: 1%;
+             bottom: 1%;
+         }
+     }
+}
